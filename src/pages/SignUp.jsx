@@ -19,7 +19,21 @@ export default function SignUp() {
     event.preventDefault();//stops browser from refreshing 
     // console.log(formInfo);
     // navigate(`/FormSubmission`, {formInfo})
-    setFormInfo({ name: "", month: "", date: "" });
+    setFormInfo({ username: "", email: "", password: "" });
+
+    axios({
+      url: 'http://localhost:8080/user/register', //taken from server.js line 33
+      method: 'POST',
+      data: payload
+      
+        })
+        .then( ()=>{
+          console.log('Data has been sent to the server!')
+        })
+        .catch(()=>{
+          console.log('ERROR; Data has NOT been sent to the server!')
+        } )
+      
   };
 const payload={
   username: formInfo.username,
@@ -30,18 +44,6 @@ const payload={
 
   //make the post requst 
 
-  axios({
-url: 'http://localhost:8080/user/register', //taken from server.js line 33
-method: 'POST',
-data: payload
-
-  })
-  .then( ()=>{
-    console.log('Data has been sent to the server!')
-  })
-  .catch(()=>{
-    console.log('ERROR; Data has NOT been sent to the server!')
-  } )
 
   console.log("State", formInfo);
 
