@@ -14,9 +14,15 @@ import Box from "@mui/material/Box";
 import { MenuItem } from "@mui/material";
 import { Atm } from "@mui/icons-material";
 
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { useState } from "react";
+import FormGroup from "@mui/material/";
+import axios from "axios";
 
 const currencies = [
   {
@@ -71,16 +77,16 @@ const payments = [
     label: "Credit Card",
   },
   {
-    value: "Cash ",
-    label: "Cash ",
+    value: "Cash",
+    label: "Cash",
   },
   {
-    value: "Bitcoin ",
-    label: "Bitcoin ",
+    value: "Bitcoin",
+    label: "Bitcoin",
   },
   {
-    value: "Other ",
-    label: "Other ",
+    value: "Other",
+    label: "Other",
   },
 ];
 export default function ExpenseForm() {
@@ -107,28 +113,56 @@ export default function ExpenseForm() {
   const paymentUpdate = (event) => {
     setPayment(event.target.value);
   };
+  console.log(currency);
 
   const noteUpdate = (event) => {
     setNote(event.target.value);
   };
 
-  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   
+
+    axios({
+      url: "http://localhost:8080/expense/addExpense", //taken from server.js line 33
+      method: "POST",
+      data: payload,
+    })
+      .then(() => {
+        console.log("Data has been sent to the server!");
+      })
+      .catch(() => {
+        console.log("ERROR; Data has NOT been sent to the server!");
+      });
+    
+  };
+
+  const payload = {
+    category: category,
+    amount: amount,
+    paymentMethod: payment,
+    date: null,
+    comment: note,
+    // username: username
+  };
+  console.log(payload);
 
   return (
     <React.Fragment>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <Typography variant="h6" gutterBottom>
-          Enter Expense Item
-        </Typography>
-        <Grid container spacing={3}>
-          {/* <Grid item xs={12} md={6}>
+      <form onSubmit={handleSubmit}>
+        <Box
+          // component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <Typography variant="h6" gutterBottom>
+            Enter Expense Item
+          </Typography>
+          <Grid container spacing={3}>
+            {/* <Grid item xs={12} md={6}>
             <TextField
               required
               id="cardName"
@@ -139,107 +173,100 @@ export default function ExpenseForm() {
             />
           </Grid> */}
 
-          <Grid item xs={12} md={6}>
-            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-amount"
-              value={amount}
-              onChange={AmtUpdate}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              label="Amount"
-            />
-          </Grid>
-          {/* <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-            variant="standard"
-          />
-        </Grid> */}
+            <Grid item xs={12} md={6}>
+              <InputLabel htmlFor="outlined-adornment-amount">
+                Amount
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={amount}
+                onChange={AmtUpdate}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+                label="Amount"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                id="outlined-select-category"
+                select
+                label="Select Expense Category"
+                value={category}
+                onChange={CatUpdate}
+                helperText="Expense Category"
+              >
+                {categories.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Select"
+                value={currency}
+                onChange={handleChange}
+                helperText="Please select your currency"
+              >
+                {currencies.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Select"
+                value={payment}
+                onChange={paymentUpdate}
+                helperText="Payment Method"
+              >
+                {payments.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  label="Basic example"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </Grid>
 
-          <Grid item xs={12} md={6}>
-            <TextField
-              id="outlined-select-category"
-              select
-              label="Select Expense Category"
-              value={category}
-              onChange={CatUpdate}
-              helperText="Expense Category"
-            >
-              {categories.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              id="outlined-select-currency"
-              select
-              label="Select"
-              value={currency}
-              onChange={handleChange}
-              helperText="Please select your currency"
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
+            <Grid item xs={12} md={6}>
+              <InputLabel htmlFor="outlined-adornment-amount">Notes</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={note}
+                onChange={noteUpdate}
+                startAdornment={
+                  <InputAdornment position="start">
+                    Add comments (optional)
+                  </InputAdornment>
+                }
+                label="Notes"
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <button variant="contained">Contained</button>
+            </Grid>
 
-          <Grid item xs={12} md={6}>
-            <TextField
-              id="outlined-select-currency"
-              select
-              label="Select"
-              value={payment}
-              onChange={paymentUpdate}
-              helperText="Payment Method"
-            >
-              {payments.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={12} md={6}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Basic example"
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <InputLabel htmlFor="outlined-adornment-amount">Notes</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-amount"
-              value={note}
-              onChange={noteUpdate}
-              startAdornment={
-                <InputAdornment position="start">
-                  Add comments (optional)
-                </InputAdornment>
-              }
-              label="Notes"
-            />
-          </Grid>
-
-          {/* <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
             <TextField
               required
               id="cvv"
@@ -250,7 +277,7 @@ export default function ExpenseForm() {
               variant="standard"
             />
           </Grid> */}
-          {/* <Grid item xs={12}>
+            {/* <Grid item xs={12}>
             <FormControlLabel
               control={
                 <Checkbox color="secondary" name="saveCard" value="yes" />
@@ -258,9 +285,9 @@ export default function ExpenseForm() {
               label="Remember credit card details for next time"
             />
           </Grid> */}
-        </Grid>
-      </Box>
-   
+          </Grid>
+        </Box>
+      </form>
     </React.Fragment>
   );
 }
