@@ -1,7 +1,7 @@
 import React, { useState, setState } from "react";
 import axios from 'axios';
 
-export default function SignUp() {
+export default function Register() {
   const [formInfo, setFormInfo]= useState ({
     username: '',
     email: '',
@@ -51,7 +51,7 @@ export default function SignUp() {
 
   return (
     <div>
-      <h2>User form</h2>
+      <h2>Registration</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="form-input">

@@ -3,10 +3,10 @@ import './App.css';
 import DashBoard from './components/DashBoard';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignUp from './pages/SignUp';
-import SignInSide from './pages/SignIn';
-import SignIn from './pages/SignIn';
+// import { BrowserRouter, Routes, Route } from 
+
+import LogIn from './pages/LogIn';
+import Register from './pages/Register';
 
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <SignIn />
-      <SignUp />
+      <LogIn />
+      <Register />
       <SideBar />
       <DashBoard > 
 
