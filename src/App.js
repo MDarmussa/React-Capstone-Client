@@ -6,6 +6,7 @@ import SideBar from './components/SideBar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from './pages/SignUp';
 import SignInSide from './pages/SignIn';
+import SignIn from './pages/SignIn';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <SignIn />
       <SignUp />
       <SideBar />
       <DashBoard > 
