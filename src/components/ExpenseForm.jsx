@@ -112,9 +112,7 @@ export default function ExpenseForm() {
     setNote(event.target.value);
   };
 
-  console.log(currency);
-  console.log(category);
-  console.log(amount);
+  
 
   return (
     <React.Fragment>
@@ -262,6 +260,7 @@ export default function ExpenseForm() {
           </Grid> */}
         </Grid>
       </Box>
+   
     </React.Fragment>
   );
 }
