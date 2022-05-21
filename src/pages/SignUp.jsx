@@ -7,6 +7,8 @@ export default function SignUp() {
     email: '',
     password: '',
   })
+
+ 
   const handleChange = (event) => {
     // responsible for updating state
     setFormInfo({ ...formInfo, [event.target.name]: event.target.value });
@@ -14,6 +16,13 @@ export default function SignUp() {
     //   [name]: value, //taking the name declared in each target input
     // });
   };
+
+  const payload={
+    username: formInfo.username,
+    email: formInfo.email,
+    password: formInfo.password
+  }  
+
   const handleSubmit = (event) => { //responsible for sending user input to the server
     //log the formInfo state to the browser
     event.preventDefault();//stops browser from refreshing 
@@ -35,13 +44,6 @@ export default function SignUp() {
         } )
       
   };
-const payload={
-  username: formInfo.username,
-  email: formInfo.email,
-  password: formInfo.password
-}
-
-
   //make the post requst 
 
 
