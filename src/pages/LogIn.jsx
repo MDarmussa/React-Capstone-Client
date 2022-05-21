@@ -2,7 +2,7 @@
 import React, { useState, setState } from "react";
 import axios from 'axios';
 
-export default function SignIn() {
+export default function LogIn() {
   const [formInfo, setFormInfo]= useState ({
     username: '',
     password: '',
