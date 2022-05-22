@@ -1,4 +1,5 @@
 import React, { useState, setState } from "react";
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 
 export default function Register() {
@@ -81,8 +82,11 @@ export default function Register() {
             onChange={handleChange}
           />
         </div>
-        <button>Submit</button>
+        <button><Link to="/profile">Submit</Link></button>
       </form>
+
+      <h5>I am the Home / Landing Page!</h5>
+        <Link to="/login"> I already have an account </Link>
     </div>
   );
 }
