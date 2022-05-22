@@ -92,11 +92,12 @@ const payments = [
 export default function ExpenseForm() {
   const [value, setValue] = React.useState(null);
 
-  const [currency, setCurrency] = React.useState("EUR");
+  const [currency, setCurrency] = React.useState("");
   const [category, setCategory] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [payment, setPayment] = React.useState("");
   const [note, setNote] = React.useState("");
+  const [date, setDate] = React.useState()
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -115,13 +116,24 @@ export default function ExpenseForm() {
   };
   console.log(currency);
 
+  const dateUpdate = (value) => {
+    setDate(value);
+  };
+
   const noteUpdate = (event) => {
     setNote(event.target.value);
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
+    setCategory('');
+    setAmount('');
+    setPayment('');
+    setNote('');
+    setCurrency('');
+    setDate(null);
 
     axios({
       url: "http://localhost:8080/expense/addExpense", //taken from server.js line 33
@@ -141,7 +153,7 @@ export default function ExpenseForm() {
     category: category,
     amount: amount,
     paymentMethod: payment,
-    date: null,
+    date: date,
     comment: note,
     // username: username
   };
@@ -187,14 +199,15 @@ export default function ExpenseForm() {
                 label="Amount"
               />
             </Grid>
+            
             <Grid item xs={12} md={6}>
               <TextField
                 id="outlined-select-category"
                 select
-                label="Select Expense Category"
+                label="Expense Category"
                 value={category}
                 onChange={CatUpdate}
-                helperText="Expense Category"
+                // helperText="Expense Category"
               >
                 {categories.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -207,10 +220,10 @@ export default function ExpenseForm() {
               <TextField
                 id="outlined-select-currency"
                 select
-                label="Select"
+                label="Currency"
                 value={currency}
                 onChange={handleChange}
-                helperText="Please select your currency"
+                // helperText="Please select your currency"
               >
                 {currencies.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -223,10 +236,10 @@ export default function ExpenseForm() {
               <TextField
                 id="outlined-select-currency"
                 select
-                label="Select"
+                label="Payment Method"
                 value={payment}
                 onChange={paymentUpdate}
-                helperText="Payment Method"
+                // helperText="Payment Method"
               >
                 {payments.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -238,10 +251,10 @@ export default function ExpenseForm() {
             <Grid item xs={12} md={6}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  label="Basic example"
-                  value={value}
-                  onChange={(newValue) => {
-                    setValue(newValue);
+                  label="Date"
+                  value={date}
+                  onChange={(updatedDate) => {
+                    dateUpdate(updatedDate);
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
@@ -249,21 +262,17 @@ export default function ExpenseForm() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <InputLabel htmlFor="outlined-adornment-amount">Notes</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-amount"
+              <TextField
+                id="outlined-basic"
+                label="Outlined"
+                variant="outlined"
                 value={note}
                 onChange={noteUpdate}
-                startAdornment={
-                  <InputAdornment position="start">
-                    Add comments (optional)
-                  </InputAdornment>
-                }
                 label="Notes"
               />
             </Grid>
             <Grid item xs={12} md={6}>
-                <button variant="contained">Contained</button>
+                <button variant="contained">Submit</button>
             </Grid>
 
             {/* <Grid item xs={12} md={6}>
