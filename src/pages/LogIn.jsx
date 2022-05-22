@@ -1,5 +1,6 @@
 
 import React, { useState, setState } from "react";
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 
 export default function LogIn() {
@@ -70,7 +71,7 @@ const payload={
             onChange={handleChange}
           />
         </div>
-        <button>Submit</button>
+        <button><Link to="/profile">Submit</Link></button>
       </form>
     </div>
   );

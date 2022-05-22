@@ -11,6 +11,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import {Link} from 'react-router-dom'
+
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
@@ -54,7 +56,7 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
+            Spence. 
           </Typography>
           {auth && (
             <div>
@@ -83,8 +85,8 @@ export default function NavBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}><Link to ="profile">Profile</Link></MenuItem>
+                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
           )}
