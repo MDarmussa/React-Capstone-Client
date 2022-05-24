@@ -22,14 +22,19 @@ export default function LogIn() {
     // navigate(`/FormSubmission`, {formInfo})
     setFormInfo({ username: "", email: "", password: "" });
 
-    axios({
-      url: 'http://localhost:8080/user/login', //taken from server.js line 33
+    axios({  //this might not needed, we just need useaState to compare auth
+      url: 'http://localhost:8080/user/login/', //taken from server.js line 33
       method: 'POST',
       data: payload
       
         })
-        .then( ()=>{
-          console.log('Data has been sent to the server! Im A LOG IN ')
+        .then( (response)=>{
+          const message = response.data;
+          if (message === "Access granted"){ //we set the global state to isLogin to true, and we redirect to profile page (must match line 56 in user.route in backend in router.post("/login")
+            window.sessionStorage.setItem('isLoggedIn', true)
+            window.location.href = 'http://localhost:3000/profile/' //modify this when deploy, because this is a local href
+          }
+          console.log('Data has been sent to the server! Im A LOG IN ', message)
         })
         .catch(()=>{
           console.log('ERROR; Data has NOT been sent to the server!')
@@ -64,14 +69,15 @@ const payload={
     
         <div className="form-input">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             value={formInfo.password}
             onChange={handleChange}
           />
         </div>
-        <button><Link to="/profile">Submit</Link></button>
+        <button>Submit</button>
+        {/* <button><Link to="/profile">Submit</Link></button> */}
       </form>
     </div>
   );

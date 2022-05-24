@@ -75,18 +75,19 @@ export default function Register() {
         </div>
         <div className="form-input">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             value={formInfo.password}
             onChange={handleChange}
           />
         </div>
-        <button><Link to="/profile">Submit</Link></button>
+        <button>Submit</button>
+        {/* <button><Link to="/profile">Submit</Link></button> */}
       </form>
 
       <h5>I am the Home / Landing Page!</h5>
-        <Link to="/login"> I already have an account </Link>
+      <Link to="/login"> I already have an account </Link>
     </div>
   );
 }
