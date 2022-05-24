@@ -11,7 +11,11 @@ import Home from "./pages/Home";
 import React, { useState, setState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import Nav from './components/NavMain'
+import { AppBar } from "@mui/material";
 
+import SignInSide from "./components/LoginSnippet";
+import SignUp from "./components/RegisterSnippet";
 // const userURL = 'http://localhost:8080/user/Register';
 
 
@@ -39,23 +43,38 @@ function App() {
   }, [])
 
   return (
-      <BrowserRouter>
+      <BrowserRouter className='App' position= 'sticky'>
         <Routes>
 
           <Route path="/"
             element = {
               <Fragment>
-                <NavBar />
+                <Nav />
                 <Home />
               </Fragment>
             }
           />
 
-        <Route path="/register" element={<Register />} />
+        <Route path="/register"
+          element={
+          <Fragment>
+            <Nav />
+            {/* <Register /> */}
+            <SignUp />
+          </Fragment>
+          
+          } />
         
-        <Route path="/logIn" element={<LogIn />}/>
-        {/* {!isLoggedIn ? <Navigate to="/logIn/"/> : null}  */}
+        <Route path="/login"
+         element = {
+          <Fragment>
+            <Nav />
+            <SignInSide />
+            {/* <LogIn /> */}
+          </Fragment>
 
+         }
+         />
 
         <Route path="/profile" //protected
           element={
@@ -66,17 +85,6 @@ function App() {
             </Fragment>
           }/>
 
-
-
-
-
-          {/* <Route path="/" element={<Home />} /> */}
-
-        {/* <SignUp /> */}
-          {/* <DashBoard /> 
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<LogIn />} /> */}
         </Routes>
       </BrowserRouter>
   );

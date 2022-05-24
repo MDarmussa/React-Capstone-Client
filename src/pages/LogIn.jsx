@@ -3,6 +3,7 @@ import React, { useState, setState } from "react";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
+
 export default function LogIn() {
   const [formInfo, setFormInfo]= useState ({
     username: '',
@@ -20,7 +21,7 @@ export default function LogIn() {
     event.preventDefault();//stops browser from refreshing 
     // console.log(formInfo);
     // navigate(`/FormSubmission`, {formInfo})
-    setFormInfo({ username: "", email: "", password: "" });
+    // setFormInfo({ username: "", email: "", password: "" });
 
     axios({  //this might not needed, we just need useaState to compare auth
       url: 'http://localhost:8080/user/login/', //taken from server.js line 33
@@ -30,14 +31,23 @@ export default function LogIn() {
         })
         .then( (response)=>{
           const message = response.data;
-          if (message === "Access granted"){ //we set the global state to isLogin to true, and we redirect to profile page (must match line 56 in user.route in backend in router.post("/login")
-            window.sessionStorage.setItem('isLoggedIn', true)
-            window.location.href = 'http://localhost:3000/profile/' //modify this when deploy, because this is a local href
-          }
-          console.log('Data has been sent to the server! Im A LOG IN ', message)
+          // if (message.username === true) {
+            if (message === "Access granted"){ //we set the global state to isLogin to true, and we redirect to profile page (must match line 56 in user.route in backend in router.post("/login")
+              window.sessionStorage.setItem('isLoggedIn', true)
+              window.location.href = 'http://localhost:3000/profile/' //modify this when deploy, because this is a local href
+            } else if(message === "wrong password!") {
+              alert(message)
+            }
+          // } 
+          // else if(message === "sorry, no user found") {
+          //   alert('User Not Found')
+          // }
+          // console.log('Data has been sent to the server! Im A LOG IN ', message)
         })
-        .catch(()=>{
-          console.log('ERROR; Data has NOT been sent to the server!')
+        .catch((error)=>{
+          console.log('ERROR; Data has NOT been sent to the server!', error)
+          alert('User not found')
+
         } )
       
   };
@@ -77,8 +87,8 @@ const payload={
           />
         </div>
         <button>Submit</button>
-        {/* <button><Link to="/profile">Submit</Link></button> */}
       </form>
+      <Link to="/register"> Don't have an account? Sign Up </Link>
     </div>
   );
 }
