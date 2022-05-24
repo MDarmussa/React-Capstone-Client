@@ -13,6 +13,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
 
+import axios from 'axios';
+
+
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
@@ -20,6 +23,18 @@ export default function NavBar() {
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
+    axios({  //this might not needed, we just need useaState to compare auth
+      url: 'http://localhost:8080/user/logout/', //taken from server.js line 33
+      method: 'GET'
+        })
+        .then( (response)=>{
+          window.sessionStorage.setItem('isLoggedIn', false)
+          window.location.href = 'http://localhost:3000/logIn/' 
+          console.log('Data has been sent to the server! Im A LOGOUT ')
+        })
+        .catch(()=>{
+          console.log('ERROR; Data has NOT been sent to the server!')
+        } )
   };
 
   const handleMenu = (event) => {
