@@ -59,7 +59,7 @@ function App() {
               <Fragment>
                 <NavBar user={user} setUser={setUser} />
                 <DashBoard user={user} setUser={setUser} />
-              </Fragment>): (<Navigate to="/logIn/" />) 
+              </Fragment>) : (<Navigate to="/logIn/" />) 
           }
         />
       </Routes>

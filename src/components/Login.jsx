@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useState, setState } from "react";
 import axios from "axios";
+import { Container } from "@mui/system";
 
 const theme = createTheme();
 
@@ -38,28 +39,23 @@ export default function SignInSide(props) {
     password: formInfo.password,
   };
 
-  const handleSubmit = (event) => {
+  const axiosCall = axios.create({
+
+  })
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios({
-      url: "http://localhost:8080/user/login/",
-      method: "POST",
-      data: payload,
-    })
-      .then((response) => {
-        console.log(response);
-        if (response.msg) {
-          setsigninError(response.msg);
+      const response = await axios.post("http://localhost:8080/user/login/", payload)
+      console.log(response)
+        if (response.data.msg) {
+          setsigninError(response.data.msg);
+          // setisLoggedIn(false)
         } else {
           setUser(response.data);
           setisLoggedIn(true);
           navigate("/profile/");
         }
-      })
-      .catch((error) => {
-        console.log("ERROR; Data has NOT been sent to the server!", error);
-        alert("User not found");
-      });
   };
 
   return (
@@ -145,6 +141,10 @@ export default function SignInSide(props) {
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 />
+                {/* message for login condition */}
+                <Container color= "secondary"> 
+                  {!!signinError ? signinError : ""}
+                </Container>
                 <Button
                   type="submit"
                   fullWidth
@@ -153,22 +153,11 @@ export default function SignInSide(props) {
                 >
                   Sign In
                 </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link
-                      href="#"
-                      variant="body2"
-                      onClick={(alert = "Needs Back-end")}
-                    >
-                      Forgot password?
-                    </Link>
-                  </Grid>
                   <Grid item>
                     <Link href="/register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid>
-                </Grid>
               </Box>
             </Box>
           </Grid>
