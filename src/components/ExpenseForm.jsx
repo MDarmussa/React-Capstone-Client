@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   Typography,
-  FormControl,
   InputLabel,
   OutlinedInput,
   InputAdornment,
@@ -12,16 +11,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
 import { MenuItem } from "@mui/material";
-import { Atm } from "@mui/icons-material";
-
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { useState } from "react";
-import FormGroup from "@mui/material/";
 import axios from "axios";
 
 const currencies = [
@@ -124,10 +116,8 @@ export default function ExpenseForm() {
     setNote(event.target.value);
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
-
     setCategory('');
     setAmount('');
     setPayment('');
@@ -174,17 +164,6 @@ export default function ExpenseForm() {
             Enter Expense Item
           </Typography>
           <Grid container spacing={3}>
-            {/* <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="cardName"
-              label="Name on card"
-              fullWidth
-              autoComplete="cc-name"
-              variant="standard"
-            />
-          </Grid> */}
-
             <Grid item xs={12} md={6}>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Amount
@@ -199,7 +178,6 @@ export default function ExpenseForm() {
                 label="Amount"
               />
             </Grid>
-            
             <Grid item xs={12} md={6}>
               <TextField
                 id="outlined-select-category"
@@ -223,7 +201,6 @@ export default function ExpenseForm() {
                 label="Currency"
                 value={currency}
                 onChange={handleChange}
-                // helperText="Please select your currency"
               >
                 {currencies.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -239,7 +216,6 @@ export default function ExpenseForm() {
                 label="Payment Method"
                 value={payment}
                 onChange={paymentUpdate}
-                // helperText="Payment Method"
               >
                 {payments.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -274,26 +250,6 @@ export default function ExpenseForm() {
             <Grid item xs={12} md={6}>
                 <button variant="contained">Submit</button>
             </Grid>
-
-            {/* <Grid item xs={12} md={6}>
-            <TextField
-              required
-              id="cvv"
-              label="CVV"
-              helperText="Last three digits on signature strip"
-              fullWidth
-              autoComplete="cc-csc"
-              variant="standard"
-            />
-          </Grid> */}
-            {/* <Grid item xs={12}>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveCard" value="yes" />
-              }
-              label="Remember credit card details for next time"
-            />
-          </Grid> */}
           </Grid>
         </Box>
       </form>

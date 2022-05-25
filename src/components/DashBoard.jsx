@@ -4,14 +4,11 @@ import { LatestExpenses } from "./LatestExpenses";
 import { SampleExpense } from "./SampleExpense";
 import React, { useEffect } from "react";
 
-
 const DashBoard = () => {
-
       useEffect(() => {     
        console.log(window.sessionStorage.isLoggedIn)
        console.log(typeof window.sessionStorage.isLoggedIn === "string")
       }, [])
-
   return (
     <>
       <ExpenseForm />

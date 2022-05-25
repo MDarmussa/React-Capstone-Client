@@ -12,10 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
-
 import axios from 'axios';
-
-
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
@@ -23,8 +20,8 @@ export default function NavBar() {
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
-    axios({  //this might not needed, we just need useaState to compare auth
-      url: 'http://localhost:8080/user/logout/', //taken from server.js line 33
+    axios({  
+      url: 'http://localhost:8080/user/logout/', 
       method: 'GET'
         })
         .then( (response)=>{
@@ -101,7 +98,6 @@ export default function NavBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}><Link to ="profile">Profile</Link></MenuItem>
-                {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
               </Menu>
             </div>
           )}

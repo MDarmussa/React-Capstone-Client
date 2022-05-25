@@ -1,9 +1,6 @@
 import { Button } from '@mui/material'
-import {Link} from 'react-router-dom'
  
 function Home() {
-
-    
     return (
         <>
             <div>
@@ -14,5 +11,4 @@ function Home() {
         </>
     )
 }
-
 export default Home

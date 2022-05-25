@@ -16,11 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const theme = createTheme();
 
-
-
-
 export default function SignUp() {
-
      const [formInfo, setFormInfo]= useState ({
           username: '',
           email: '',
@@ -44,8 +40,6 @@ export default function SignUp() {
       url: 'http://localhost:8080/user/register', //taken from server.js line 33
       method: 'POST',
       data: payload
-
-      
      })
      .then( ()=>{
           console.log('Data has been sent to the server!')
@@ -83,7 +77,7 @@ export default function SignUp() {
                     type="text"
                     name="username"
                     placeholder="Username"
-                    value={formInfo.username} //gets the latest value from whatever is entered by the user
+                    value={formInfo.username} 
                     onChange={handleChange}
                     id="username"
                     label="User Name"
