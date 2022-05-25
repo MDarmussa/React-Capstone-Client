@@ -2,7 +2,7 @@ import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import MoneyIcon from '@mui/icons-material/Money';
 
-export const Expense = (props) => (
+export const ExpenseTotal = (props) => (
   <Card
     sx={{ height: '100%' }}
     {...props}
