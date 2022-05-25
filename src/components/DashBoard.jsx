@@ -1,8 +1,8 @@
-import { Expense } from "./Expense";
+import { ExpenseTotal } from "./ExpenseTotal";
 import ExpenseForm from "./ExpenseForm";
-import { LatestOrders } from "./LatestOrders";
-import { Sample } from "./Sample";
-import React, { useState, setState, useEffect } from "react";
+import { LatestExpenses } from "./LatestExpenses";
+import { SampleExpense } from "./SampleExpense";
+import React, { useEffect } from "react";
 
 
 const DashBoard = () => {
@@ -16,9 +16,9 @@ const DashBoard = () => {
     <>
       <ExpenseForm />
       <h1>DashBoard</h1>
-      <Expense />
-      <Sample></Sample>
-      <LatestOrders></LatestOrders>
+      <ExpenseTotal />
+      <SampleExpense></SampleExpense>
+      <LatestExpenses></LatestExpenses>
     </>
   );
 };

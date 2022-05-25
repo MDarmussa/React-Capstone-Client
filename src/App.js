@@ -1,92 +1,77 @@
-import { Expense } from "./components/Expense";
 import "./App.css";
 import DashBoard from "./components/DashBoard";
 import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
 import { Fragment } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LogIn from "./pages/LogIn";
-import Register from "./pages/Register";
 import Home from "./pages/Home";
-import React, { useState, setState, useEffect } from "react";
-import {Link} from 'react-router-dom'
-import axios from 'axios';
-import Nav from './components/NavMain'
-import { AppBar } from "@mui/material";
-
-import SignInSide from "./components/LoginSnippet";
-import SignUp from "./components/RegisterSnippet";
-// const userURL = 'http://localhost:8080/user/Register';
-
-
+import React, { useEffect } from "react";
+import Nav from "./components/NavMain";
+import localData from "./localData";
+import SignInSide from "./components/Login";
+import SignUp from "./components/Register";
 
 function App() {
-
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(localData);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
-  const handleLogin = () =>{
-    setUser({
-      isLoggedIn: false,
-      // userId: data.user.id
-      
-    });
-    // window.sessionStorage.setItem('userId', data.user.id)
-  }
-    
-
-  const handleLogout = () => setUser(null);
-
-  useEffect(() => {     
-   console.log(window.sessionStorage.isLoggedIn);
-   setisLoggedIn(window.sessionStorage.isLoggedIn);
-  }, [])
+  useEffect(() => {
+    console.log(window.sessionStorage.isLoggedIn);
+    setisLoggedIn(window.sessionStorage.isLoggedIn);
+  }, []);
 
   return (
-      <BrowserRouter className='App' position= 'sticky'>
-        <Routes>
-
-          <Route path="/"
-            element = {
-              <Fragment>
-                <Nav />
-                <Home />
-              </Fragment>
-            }
-          />
-
-        <Route path="/register"
+    <BrowserRouter className="App" position="sticky">
+      <Routes>
+        <Route
+          path="/"
           element={
-          <Fragment>
-            <Nav />
-            {/* <Register /> */}
-            <SignUp />
-          </Fragment>
-          
-          } />
-        
-        <Route path="/login"
-         element = {
-          <Fragment>
-            <Nav />
-            <SignInSide />
-            {/* <LogIn /> */}
-          </Fragment>
-
-         }
-         />
-
-        <Route path="/profile" //protected
-          element={
-            window.sessionStorage.isLoggedIn === "false" ? <Navigate to="/logIn/"/> : 
             <Fragment>
-              <NavBar />
-              <DashBoard />
+              <Nav />
+              <Home />
             </Fragment>
-          }/>
+          }
+        />
 
-        </Routes>
-      </BrowserRouter>
+        <Route
+          path="/register"
+          element={
+            <Fragment>
+              <Nav />
+              <SignUp />
+            </Fragment>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <Fragment>
+              <Nav />
+              <SignInSide
+                user={user}
+                setUser={setUser}
+                isLoggedIn={isLoggedIn}
+                setisLoggedIn={setisLoggedIn}
+              />
+            </Fragment>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            !isLoggedIn ? (
+              <Navigate to="/logIn/" />
+            ) : (
+              <Fragment>
+                <NavBar user={user} setUser={setUser} />
+                <DashBoard user={user} setUser={setUser} />
+              </Fragment>
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
