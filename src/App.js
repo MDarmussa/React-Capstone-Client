@@ -14,11 +14,6 @@ function App() {
   const [user, setUser] = React.useState(localData);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
-  useEffect(() => {
-    console.log(window.sessionStorage.isLoggedIn);
-    setisLoggedIn(window.sessionStorage.isLoggedIn);
-  }, []);
-
   return (
     <BrowserRouter className="App" position="sticky">
       <Routes>
@@ -60,14 +55,11 @@ function App() {
         <Route
           path="/profile"
           element={
-            !isLoggedIn ? (
-              <Navigate to="/logIn/" />
-            ) : (
+           isLoggedIn ? (
               <Fragment>
                 <NavBar user={user} setUser={setUser} />
                 <DashBoard user={user} setUser={setUser} />
-              </Fragment>
-            )
+              </Fragment>): (<Navigate to="/logIn/" />) 
           }
         />
       </Routes>
