@@ -4,10 +4,12 @@ import { LatestExpenses } from "./LatestExpenses";
 import { SampleExpense } from "./SampleExpense";
 import React, { useEffect } from "react";
 
-const DashBoard = () => {
+const DashBoard = (props) => {
+
+  const {user} =props;
   return (
     <>
-      <ExpenseForm />
+      <ExpenseForm user={user}/>
       <h1>DashBoard</h1>
       <ExpenseTotal />
       <SampleExpense></SampleExpense>
