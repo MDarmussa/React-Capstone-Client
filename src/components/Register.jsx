@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState, setState } from "react";
+import { useState, setState} from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -32,6 +33,7 @@ export default function SignUp() {
           email: formInfo.email,
           password: formInfo.password
      }  
+     const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,6 +45,7 @@ export default function SignUp() {
      })
      .then( ()=>{
           console.log('Data has been sent to the server!')
+          navigate("/login/");
      })
      .catch(()=>{
           console.log('ERROR; Data has NOT been sent to the server!')
