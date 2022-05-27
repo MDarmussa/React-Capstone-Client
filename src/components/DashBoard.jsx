@@ -13,7 +13,7 @@ const DashBoard = (props) => {
       <h1>DashBoard</h1>
       <ExpenseTotal />
       <SampleExpense></SampleExpense>
-      <LatestExpenses></LatestExpenses>
+      <LatestExpenses user={user}></LatestExpenses>
     </>
   );
 };
