@@ -81,7 +81,7 @@ const payments = [
     label: "Other",
   },
 ];
-export default function ExpenseForm() {
+export default function ExpenseForm(props) {
   const [value, setValue] = React.useState(null);
 
   const [currency, setCurrency] = React.useState("");
@@ -89,7 +89,13 @@ export default function ExpenseForm() {
   const [amount, setAmount] = React.useState("");
   const [payment, setPayment] = React.useState("");
   const [note, setNote] = React.useState("");
-  const [date, setDate] = React.useState()
+  const [date, setDate] = React.useState();
+  // const [user, setUser]= React.useState({user})
+
+
+  const { user } = props;
+
+console.log("these are the items carried over from login:",props);
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -116,6 +122,15 @@ export default function ExpenseForm() {
     setNote(event.target.value);
   };
 
+  const payload = {
+    category: category,
+    amount: amount,
+    paymentMethod: payment,
+    date: date,
+    comment: note,
+    username: user._id // RO Comment: update with same value of username that was passed in from login/register state from props
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setCategory('');
@@ -124,6 +139,7 @@ export default function ExpenseForm() {
     setNote('');
     setCurrency('');
     setDate(null);
+
 
     axios({
       url: "http://localhost:8080/expense/addExpense", //taken from server.js line 33
@@ -139,15 +155,8 @@ export default function ExpenseForm() {
     
   };
 
-  const payload = {
-    category: category,
-    amount: amount,
-    paymentMethod: payment,
-    date: date,
-    comment: note,
-    // username: username
-  };
-  console.log(payload);
+
+  console.log("this is the expense form payload:", payload);
 
   return (
     <React.Fragment>
@@ -240,7 +249,7 @@ export default function ExpenseForm() {
             <Grid item xs={12} md={6}>
               <TextField
                 id="outlined-basic"
-                label="Outlined"
+                // label="Outlined"
                 variant="outlined"
                 value={note}
                 onChange={noteUpdate}
