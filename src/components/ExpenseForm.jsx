@@ -241,6 +241,7 @@ export default function ExpenseForm(props) {
                 <DatePicker
                   label="Date"
                   value={date}
+              
                   onChange={(updatedDate) => {
                     dateUpdate(updatedDate);
                   }}
