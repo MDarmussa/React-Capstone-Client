@@ -12,7 +12,7 @@ const DashBoard = (props) => {
     <>
       <ExpenseForm user={user}/>
       <h1>Expense Breakdown</h1>
-      <GraphSample user={user}/>
+      {/* <GraphSample user={user}/> */}
       <ExpenseTotal user={user}/>
       <SampleExpense></SampleExpense>
       <LatestExpenses user={user}></LatestExpenses>
