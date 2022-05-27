@@ -3,6 +3,7 @@ import ExpenseForm from "./ExpenseForm";
 import { LatestExpenses } from "./LatestExpenses";
 import { SampleExpense } from "./SampleExpense";
 import React, { useEffect } from "react";
+import GraphSample from "./GraphSample"
 
 const DashBoard = (props) => {
 
@@ -10,8 +11,9 @@ const DashBoard = (props) => {
   return (
     <>
       <ExpenseForm user={user}/>
-      <h1>DashBoard</h1>
-      <ExpenseTotal />
+      <h1>Expense Breakdown</h1>
+      <GraphSample user={user}/>
+      <ExpenseTotal user={user}/>
       <SampleExpense></SampleExpense>
       <LatestExpenses user={user}></LatestExpenses>
     </>
