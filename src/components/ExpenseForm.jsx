@@ -95,7 +95,7 @@ export default function ExpenseForm(props) {
 
   const { user } = props;
 
-console.log("these are the items carried over from login:",props);
+// console.log("these are the items carried over from login:",props);
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -112,7 +112,7 @@ console.log("these are the items carried over from login:",props);
   const paymentUpdate = (event) => {
     setPayment(event.target.value);
   };
-  console.log(currency);
+  // console.log(currency);
 
   const dateUpdate = (value) => {
     setDate(value);
@@ -156,7 +156,7 @@ console.log("these are the items carried over from login:",props);
   };
 
 
-  console.log("this is the expense form payload:", payload);
+  // console.log("this is the expense form payload:", payload);
 
   return (
     <React.Fragment>
@@ -169,6 +169,9 @@ console.log("these are the items carried over from login:",props);
           noValidate
           autoComplete="off"
         >
+               <Typography variant="h6" gutterBottom>
+            {user.username}'s Expenses
+          </Typography>
           <Typography variant="h6" gutterBottom>
             Enter Expense Item
           </Typography>

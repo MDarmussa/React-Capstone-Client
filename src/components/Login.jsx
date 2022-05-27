@@ -47,7 +47,7 @@ export default function SignInSide(props) {
     event.preventDefault();
 
       const response = await axios.post("http://localhost:8080/user/login/", payload)
-      console.log(response)
+      // console.log(response)
         if (response.data.msg) {
           setsigninError(response.data.msg);
           // setisLoggedIn(false)
