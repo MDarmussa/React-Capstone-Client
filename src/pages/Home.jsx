@@ -4,6 +4,7 @@ import "./Home.css"
 function Home() {
   return (
     <>
+    <div className="body-container">
       <main className="home-container">
         <div className="main-container">
           <div>
@@ -25,6 +26,7 @@ function Home() {
           </div>
         </div>
       </main>
+      </div>
     </>
   );
 }
