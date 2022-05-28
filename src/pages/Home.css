@@ -1,9 +1,10 @@
-body{
+.body-container{
     background-color: #162B1E;
-}
-.background-container{
     min-height: 100vh;
     min-width: 100vw;
+}
+.background-container{
+ 
     background-color: #162B1E; 
     /* -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -37,7 +38,7 @@ display: grid;
       font-weight: 500;
       margin-bottom: 0;
   }
-h1{
+.main-container h1{
     font-family: 'Libre Bodoni', serif;
         /* font-family: 'Source Serif Pro', serif; */
     font-size: 80pt;
