@@ -108,7 +108,7 @@ export const LatestExpenses = (props) => {
       // data: payload
     })
       .then((response) => {
-        console.log("I am the response", response);
+        // console.log("I am the response", response);
         setExpenses(response.data);
       })
       .catch(() => {
