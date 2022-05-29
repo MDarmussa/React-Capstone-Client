@@ -7,17 +7,17 @@ import BarChart from "./BarChart"
 
 const DashBoard = (props) => {
 
-  const {user} =props;
+  const {user, expense} =props;
   return (
     <>
       <ExpenseForm user={user}/>
       <h1>Expense Breakdown</h1>
       <div style={{width: 700}}>
-      <BarChart user={user}/>
+      {/* <BarChart user={user}/> */}
       </div>
       <ExpenseTotal user={user}/>
       <SampleExpense></SampleExpense>
-      <LatestExpenses user={user}></LatestExpenses>
+      <LatestExpenses user={user} expense={expense}></LatestExpenses>
     </>
   );
 };

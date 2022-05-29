@@ -19,15 +19,15 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { SeverityPill } from "./SeverityPill";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { id } from "date-fns/locale";
 
 
 
 
 export const LatestExpenses = (props) => {
   const [expenses, setExpenses] = useState([]);
-  const [deleteExpense, setDeleteExpense] =useState('')
   const { user } = props;
-
+  
   useEffect(() => {
     const getExpenses = axios({
       url: `http://localhost:8080/expense/userExpenses/${user._id}`, //taken from server.js line 33
@@ -40,13 +40,10 @@ export const LatestExpenses = (props) => {
         console.log("ERROR; Data has NOT received from the server!");
       });
   }, []);
-
-  const removeData = (id) => {
-    axios.delete(`http://localhost:8080/expense/${expenses._id}`).then(res => {
-        const del = deleteExpense.filter(deleteExpense => expenses._id !== deleteExpense.expenses._id)
-        setDeleteExpense('')
-    })
-  }
+  
+  const deleteHandler = async (id) => {
+   await axios.delete(`http://localhost:8080/expense/${id}`)
+          }
 
   return (
     <>
@@ -110,7 +107,8 @@ export const LatestExpenses = (props) => {
                   { expense.comment}
                   </TableCell>
                   <TableCell>
-                    <button value={expense.id}>Delete</button>
+                    <button  onSubmit={deleteHandler(expense._id)}>Delete</button>
+                    <p>{expense._id}</p>
                   </TableCell>
                 </TableRow>
               ))}
@@ -138,4 +136,4 @@ export const LatestExpenses = (props) => {
     )
     </>
   );
-};
+}

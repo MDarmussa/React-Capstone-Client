@@ -7,11 +7,13 @@ import Home from "./pages/Home";
 import React, { useEffect } from "react";
 import Nav from "./components/NavMain";
 import localData from "./localData";
+import localExpense from "./localExpense";
 import SignInSide from "./components/Login";
 import SignUp from "./components/Register";
 
 function App() {
   const [user, setUser] = React.useState(localData);
+  const [expense, setExpense] = React.useState(localExpense);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
   return (
@@ -58,7 +60,7 @@ function App() {
            isLoggedIn ? (
               <Fragment>
                 <NavBar user={user} setUser={setUser} />
-                <DashBoard user={user} setUser={setUser} />
+                <DashBoard user={user} setUser={setUser} expense={expense} setExpense={setExpense} />
               </Fragment>) : (<Navigate to="/logIn/" />) 
           }
         />
