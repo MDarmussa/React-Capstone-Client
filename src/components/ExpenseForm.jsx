@@ -15,6 +15,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
+import "../pages/Home.css"
 
 const currencies = [
   {
@@ -172,7 +173,7 @@ export default function ExpenseForm(props) {
           autoComplete="off"
         >
                <Typography variant="h6" gutterBottom>
-            {user.username}'s Expenses
+            {user.username}'s Expenses:
           </Typography>
           <Typography variant="h6" gutterBottom>
             Enter Expense Item
