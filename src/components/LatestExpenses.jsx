@@ -45,9 +45,25 @@ async function deleteHandler(id) {
     console.log(deleter);
     setTriggerReload(true);
           }
+
+
+          let amtArray=[];
+
+const arrayAmounts = expenses.map((expense)=>{
+amtArray.push(expense.amount )
+  console.log("I am the array of amounts:",amtArray)
+console.log("I am the amount array", amtArray)
+
+ })
+
+const sumTotal = amtArray.reduce((a,b)=>a+b,0)
+console.log("i am the sum:", sumTotal)
     
   return (
     <>
+    <Grid>
+      {sumTotal}
+    </Grid>
     <Card >
       <CardHeader title="Recent Expenses" />
       <PerfectScrollbar>
