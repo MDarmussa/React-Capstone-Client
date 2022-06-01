@@ -1,6 +1,5 @@
 import "./App.css";
 import DashBoard from "./components/DashBoard";
-import NavBar from "./components/NavBar";
 import { Fragment } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
@@ -8,64 +7,64 @@ import React, { useEffect } from "react";
 import Nav from "./components/NavMain";
 import localData from "./localData";
 import localExpense from "./localExpense";
-import SignInSide from "./components/Login";
+import Login from "./components/Login";
 import SignUp from "./components/Register";
 
 function App() {
   const [user, setUser] = React.useState(localData);
   const [expense, setExpense] = React.useState(localExpense);
-  const [isLoggedIn, setisLoggedIn] = React.useState(false);
   const [triggerReload, setTriggerReload] = React.useState(false);
 
+  useEffect(() => {
+    console.log(JSON.parse(window.sessionStorage.user))
+  })
   return (
     <BrowserRouter className="App" position="sticky">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Fragment>
-              <Nav />
-              <Home />
-            </Fragment>
-          }
-        />
+      <div>
+        <Nav />
 
-        <Route
-          path="/register"
-          element={
-            <Fragment>
-              <Nav />
-              <SignUp />
-            </Fragment>
-          }
-        />
-
-        <Route
-          path="/login"
-          element={
-            <Fragment>
-              <Nav />
-              <SignInSide
-                user={user}
-                setUser={setUser}
-                isLoggedIn={isLoggedIn}
-                setisLoggedIn={setisLoggedIn}
-              />
-            </Fragment>
-          }
-        />
-
-        <Route
-          path="/profile"
-          element={
-           isLoggedIn ? (
+        <Routes>
+          <Route
+            path="/"
+            element={
               <Fragment>
-                <NavBar user={user} setUser={setUser} />
-                <DashBoard user={user} setUser={setUser} expense={expense} setExpense={setExpense} triggerReload={triggerReload} setTriggerReload={setTriggerReload} />
-              </Fragment>) : (<Navigate to="/logIn/" />) 
-          }
-        />
-      </Routes>
+                <Home />
+              </Fragment>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <Fragment>
+                <SignUp />
+              </Fragment>
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              <Fragment>
+                <Login
+                  user={JSON.parse(window.sessionStorage.user)}
+                  setUser={setUser}
+                />
+              </Fragment>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              window.sessionStorage.isLoggedIn === 'true' ? (
+                <Fragment>
+                  <DashBoard user={JSON.parse(window.sessionStorage.user)} expense={expense} setExpense={setExpense} triggerReload={triggerReload} setTriggerReload={setTriggerReload} />
+                </Fragment>) : (<Navigate to="/logIn/" />) 
+            }
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

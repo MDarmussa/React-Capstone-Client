@@ -16,11 +16,13 @@ import { useNavigate } from "react-router-dom";
 import { useState, setState } from "react";
 import axios from "axios";
 import { Container } from "@mui/system";
+import "../pages/Home.css"
+import { green } from "@mui/material/colors";
 
 const theme = createTheme();
 
-export default function SignInSide(props) {
-  const { user, setUser, isLoggedIn, setisLoggedIn } = props;
+export default function Login(props) {
+  const { user, setUser } = props;
   const [formInfo, setFormInfo] = useState({
     username: "",
     password: "",
@@ -39,10 +41,6 @@ export default function SignInSide(props) {
     password: formInfo.password,
   };
 
-  const axiosCall = axios.create({
-
-  })
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -53,7 +51,8 @@ export default function SignInSide(props) {
           // setisLoggedIn(false)
         } else {
           setUser(response.data);
-          setisLoggedIn(true);
+          window.sessionStorage.setItem('isLoggedIn', true)
+          window.sessionStorage.setItem('user', JSON.stringify(response.data))
           navigate("/profile/");
         }
   };
@@ -98,7 +97,7 @@ export default function SignInSide(props) {
                 alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <Avatar sx={{ m: 1, bgcolor: "#FBCD8A" }}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
@@ -120,7 +119,7 @@ export default function SignInSide(props) {
                   required
                   fullWidth
                   id="email"
-                  label="User Name"
+                  label="Username"
                   autoComplete="email"
                   autoFocus
                 />
@@ -149,7 +148,7 @@ export default function SignInSide(props) {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, color: green}} 
                 >
                   Sign In
                 </Button>

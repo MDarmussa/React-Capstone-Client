@@ -14,6 +14,7 @@ import Menu from '@mui/material/Menu';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
+
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);

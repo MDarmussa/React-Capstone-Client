@@ -55,6 +55,16 @@ h2{
     color:#FBCD8A;
 }
 
+.navRight {
+    text-transform: capitalize !important;
+    font-family: 'Libre Bodoni', serif !important
+
+}
+
+a {
+    text-decoration: none;
+}
+
 
 
 /* .link-style{
