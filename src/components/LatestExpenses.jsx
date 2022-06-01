@@ -125,7 +125,7 @@ console.log("i am the sum:", sumTotal)
                   </TableCell>
                   <TableCell>
                     <button type='submit' onClick={() => deleteHandler(expense._id)}>Delete</button>
-                    <p>{expense._id}</p>
+                    {/* <p>{expense._id}</p> */}
                   </TableCell>
                 </TableRow>
               ))}
