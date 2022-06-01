@@ -19,6 +19,7 @@ import { Container } from "@mui/system";
 import "../pages/Home.css"
 import { green } from "@mui/material/colors";
 
+
 const theme = createTheme();
 
 export default function Login(props) {
@@ -141,9 +142,10 @@ export default function Login(props) {
                   label="Remember me"
                 />
                 {/* message for login condition */}
-                <Container color= "secondary"> 
+                
+                <Typography color= "red"> 
                   {!!signinError ? signinError : ""}
-                </Container>
+                </Typography>
                 <Button
                   type="submit"
                   fullWidth

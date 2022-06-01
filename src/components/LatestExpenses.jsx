@@ -49,15 +49,15 @@ async function deleteHandler(id) {
 
           let amtArray=[];
 
-const arrayAmounts = expenses.map((expense)=>{
-amtArray.push(expense.amount )
-  console.log("I am the array of amounts:",amtArray)
-console.log("I am the amount array", amtArray)
+          const arrayAmounts = expenses.map((expense)=>{
+          amtArray.push(expense.amount )
+            console.log("I am the array of amounts:",amtArray)
+          console.log("I am the amount array", amtArray)
 
- })
+          })
 
-const sumTotal = amtArray.reduce((a,b)=>a+b,0)
-console.log("i am the sum:", sumTotal)
+        const sumTotal = amtArray.reduce((a,b)=>a+b,0)
+        console.log("i am the sum:", sumTotal)
     
   return (
     <>
@@ -125,7 +125,7 @@ console.log("i am the sum:", sumTotal)
                   </TableCell>
                   <TableCell>
                     <button type='submit' onClick={() => deleteHandler(expense._id)}>Delete</button>
-                    <p>{expense._id}</p>
+                    {/* <p>{expense._id}</p> */}
                   </TableCell>
                 </TableRow>
               ))}
