@@ -65,6 +65,15 @@ a {
     text-decoration: none;
 }
 
+.signInButton, .signupButton {
+    background-color: #162B1E !important; 
+    color:#FBCD8A !important;
+}
+
+.submitButton {
+    background-color: #162B1E !important; 
+    color:#FBCD8A !important;
+}
 
 
 /* .link-style{

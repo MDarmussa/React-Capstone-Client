@@ -178,8 +178,8 @@ export default function ExpenseForm(props) {
           <Typography variant="h6" gutterBottom>
             Enter Expense Item
           </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={2}>
+            <Grid item xs={8} md={6}>
               <InputLabel htmlFor="outlined-adornment-amount">
                 Amount
               </InputLabel>
@@ -264,7 +264,7 @@ export default function ExpenseForm(props) {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-                <button variant="contained">Submit</button>
+                <button className="submitButton" variant="contained">Submit</button>
             </Grid>
           </Grid>
         </Box>

@@ -147,10 +147,12 @@ export default function Login(props) {
                   {!!signinError ? signinError : ""}
                 </Typography>
                 <Button
+                className="signInButton"
+                  color="primary"
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2, color: green}} 
+                  sx={{ mt: 3, mb: 2}} 
                 >
                   Sign In
                 </Button>
