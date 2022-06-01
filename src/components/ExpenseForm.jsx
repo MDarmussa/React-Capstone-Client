@@ -93,7 +93,7 @@ export default function ExpenseForm(props) {
   // const [user, setUser]= React.useState({user})
 
 
-  const { user } = props;
+  const { user, triggerReload, setTriggerReload } = props;
 
 // console.log("these are the items carried over from login:",props);
 
@@ -139,8 +139,8 @@ export default function ExpenseForm(props) {
     setNote('');
     setCurrency('');
     setDate(null);
-
-
+    setTriggerReload(true);
+    
     axios({
       url: "http://localhost:8080/expense/addExpense", //taken from server.js line 33
       method: "POST",

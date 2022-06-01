@@ -19,136 +19,35 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { SeverityPill } from "./SeverityPill";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-
-// const payload={
-
-//   _id:"",
-//   category:"",
-//   amount: 0,
-//   paymentMethod:"",
-//   date:"",
-//   comment:" ",
-//   username : ""
-
-// }
-
-// const orders = [
-//   {
-//     id: uuid(),
-//     ref: 'CDD1049',
-//     amount: 30.5,
-//     customer: {
-//       name: 'Ekaterina Tankova'
-//     },
-//     createdAt: 1555016400000,
-//     status: 'pending'
-//   },
-//   {
-//     id: uuid(),
-//     ref: 'CDD1048',
-//     amount: 25.1,
-//     customer: {
-//       name: 'Cao Yu'
-//     },
-//     createdAt: 1555016400000,
-//     status: 'delivered'
-//   },
-//   {
-//     id: uuid(),
-//     ref: 'CDD1047',
-//     amount: 10.99,
-//     customer: {
-//       name: 'Alexa Richardson'
-//     },
-//     createdAt: 1554930000000,
-//     status: 'refunded'
-//   },
-//   {
-//     id: uuid(),
-//     ref: 'CDD1046',
-//     amount: 96.43,
-//     customer: {
-//       name: 'Anje Keizer'
-//     },
-//     createdAt: 1554757200000,
-//     status: 'pending'
-//   },
-//   {
-//     id: uuid(),
-//     ref: 'CDD1045',
-//     amount: 32.54,
-//     customer: {
-//       name: 'Clarke Gillebert'
-//     },
-//     createdAt: 1554670800000,
-//     status: 'delivered'
-//   },
-//   {
-//     id: uuid(),
-//     ref: 'CDD1044',
-//     amount: 16.76,
-//     customer: {
-//       name: 'Adam Denisov'
-//     },
-//     createdAt: 1554670800000,
-//     status: 'delivered'
-//   }
-// ];
+import { id } from "date-fns/locale";
 
 export const LatestExpenses = (props) => {
   const [expenses, setExpenses] = useState([]);
-
-  const { user } = props;
-
+  const { user, triggerReload, setTriggerReload } = props;
+  
   useEffect(() => {
     const getExpenses = axios({
       url: `http://localhost:8080/expense/userExpenses/${user._id}`, //taken from server.js line 33
       method: "GET",
-      // data: payload
     })
       .then((response) => {
-        // console.log("I am the response", response);
         setExpenses(response.data);
+        setTriggerReload(false);
       })
-      .catch(() => {
-        console.log("ERROR; Data has NOT received from the server!");
+      .catch((error) => {
+        console.log(error);
       });
-    // console.log("this is the list of expenses from the server", getExpenses);
-    //  console.log(getExpenses.category)
-  }, []);
-
+  },[triggerReload]);
+  
+async function deleteHandler(id) { 
+  console.log(id)
+    const deleter = await axios({method: "delete", url: `http://localhost:8080/expense/deleteExpense/${id}` })
+    console.log(deleter);
+    setTriggerReload(true);
+          }
+    
   return (
     <>
-      {/* <Grid
-        container={true}
-        xs={12}
-        padding={12}
-        className="sign-container"
-        sx={{
-          m: 0.5,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {expenses.map((expense, index) => {
-          console.log(expense)
-          // return(
-          
-          //   <>
-          // <h3>{expense._id}</h3>
-          // <h3>{expense.category}</h3>
-          // <h3>{expense.amount}</h3>
-          // </>
-
-
-          
-          // )
-        })}
-      </Grid> */}
-  
-
-  
     <Card >
       <CardHeader title="Recent Expenses" />
       <PerfectScrollbar>
@@ -208,6 +107,10 @@ export const LatestExpenses = (props) => {
                   <TableCell>
                   { expense.comment}
                   </TableCell>
+                  <TableCell>
+                    <button type='submit' onClick={() => deleteHandler(expense._id)}>Delete</button>
+                    <p>{expense._id}</p>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -234,4 +137,4 @@ export const LatestExpenses = (props) => {
     )
     </>
   );
-};
+}
