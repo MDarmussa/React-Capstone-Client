@@ -53,9 +53,9 @@ export default function Nav() {
                 {window.sessionStorage.isLoggedIn === 'true' && <div> 
                   <Button onClick={handleChange}  className='navRight' sx={{ fontSize: 18, color: '#FBCD8A'}}>Logout</Button>
                 </div>}
-                <a href='/'>
+                
                   <Button className='navRight' sx={{ fontSize: 18, color: '#FBCD8A' }} onClick={()=> window.open("https://github.com/MDarmussa/React-Capstone-Client", "_blank")}>See Code</Button>
-                </a>
+              
               </Stack>
             </div>
         </Toolbar>

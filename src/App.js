@@ -15,9 +15,6 @@ function App() {
   const [expense, setExpense] = React.useState(localExpense);
   const [triggerReload, setTriggerReload] = React.useState(false);
 
-  useEffect(() => {
-    console.log(JSON.parse(window.sessionStorage.user))
-  })
   return (
     <BrowserRouter className="App" position="sticky">
       <div>
@@ -47,7 +44,6 @@ function App() {
             element={
               <Fragment>
                 <Login
-                  user={JSON.parse(window.sessionStorage.user)}
                   setUser={setUser}
                 />
               </Fragment>

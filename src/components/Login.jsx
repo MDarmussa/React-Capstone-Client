@@ -22,7 +22,7 @@ import { green } from "@mui/material/colors";
 const theme = createTheme();
 
 export default function Login(props) {
-  const { user, setUser } = props;
+  const { setUser } = props;
   const [formInfo, setFormInfo] = useState({
     username: "",
     password: "",
