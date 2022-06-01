@@ -39,9 +39,9 @@ export const LatestExpenses = (props) => {
       });
   },[triggerReload]);
   
-function deleteHandler(id) {
+async function deleteHandler(id) { 
   console.log(id)
-    const deleter = axios({method: "delete", url: `http://localhost:8080/expense/deleteExpense/${id}` })
+    const deleter = await axios({method: "delete", url: `http://localhost:8080/expense/deleteExpense/${id}` })
     console.log(deleter);
     setTriggerReload(true);
           }
