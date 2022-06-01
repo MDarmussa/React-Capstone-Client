@@ -21,12 +21,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { id } from "date-fns/locale";
 
-
-
-
 export const LatestExpenses = (props) => {
   const [expenses, setExpenses] = useState([]);
-  const { user } = props;
+  const { user, triggerReload, setTriggerReload } = props;
   
   useEffect(() => {
     const getExpenses = axios({
@@ -35,16 +32,20 @@ export const LatestExpenses = (props) => {
     })
       .then((response) => {
         setExpenses(response.data);
+        setTriggerReload(false);
       })
-      .catch(() => {
-        console.log("ERROR; Data has NOT received from the server!");
+      .catch((error) => {
+        console.log(error);
       });
-  }, []);
+  },[triggerReload]);
   
-  const deleteHandler = async (id) => {
-   await axios.delete(`http://localhost:8080/expense/${id}`)
+function deleteHandler(id) {
+  console.log(id)
+    const deleter = axios({method: "delete", url: `http://localhost:8080/expense/deleteExpense/${id}` })
+    console.log(deleter);
+    setTriggerReload(true);
           }
-
+    
   return (
     <>
     <Card >
@@ -107,7 +108,7 @@ export const LatestExpenses = (props) => {
                   { expense.comment}
                   </TableCell>
                   <TableCell>
-                    <button  onSubmit={deleteHandler(expense._id)}>Delete</button>
+                    <button type='submit' onClick={() => deleteHandler(expense._id)}>Delete</button>
                     <p>{expense._id}</p>
                   </TableCell>
                 </TableRow>

@@ -15,6 +15,7 @@ function App() {
   const [user, setUser] = React.useState(localData);
   const [expense, setExpense] = React.useState(localExpense);
   const [isLoggedIn, setisLoggedIn] = React.useState(false);
+  const [triggerReload, setTriggerReload] = React.useState(false);
 
   return (
     <BrowserRouter className="App" position="sticky">
@@ -60,7 +61,7 @@ function App() {
            isLoggedIn ? (
               <Fragment>
                 <NavBar user={user} setUser={setUser} />
-                <DashBoard user={user} setUser={setUser} expense={expense} setExpense={setExpense} />
+                <DashBoard user={user} setUser={setUser} expense={expense} setExpense={setExpense} triggerReload={triggerReload} setTriggerReload={setTriggerReload} />
               </Fragment>) : (<Navigate to="/logIn/" />) 
           }
         />
