@@ -15,6 +15,35 @@ export const ExpenseTotal = (props) => {
 //   NOT WORKING const sumValues = expenses => expenses.amount(expenses).reduce((a, b) => a + b);
 // console.log(sumValues);
 
+
+let amtArray=[];
+
+const arrayAmounts = expenses.map((expense)=>{
+amtArray.push(expense.amount )
+  console.log("I am the array of amounts:",amtArray)
+console.log("I am the amount array", amtArray)
+
+ })
+
+const sumTotal = amtArray.reduce((a,b)=>a+b,0)
+console.log("i am the sum:", sumTotal)
+
+//  console.log("i should be an array", arrayAmounts)
+//   function totalExpenses(arrayAmounts){
+//  let sum=0;
+//  for (let i=0; i<arrayAmounts.length;i++){
+//    console.log("i am the for loop", i)
+//  sum+=arrayAmounts[i]
+//  console.log("this is the sum", sum)
+
+//  }}
+
+  // amounts.reduce((a, c) => a + c.qty * c.amount, 0)
+
+
+
+
+
   const { user } = props;
 
   useEffect(() => {
@@ -93,7 +122,7 @@ export const ExpenseTotal = (props) => {
           }}
           variant="body2"
         >
-          12%
+         $ {sumTotal}
         </Typography>
         <Typography
           color="textSecondary"
