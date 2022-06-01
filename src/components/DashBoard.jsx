@@ -1,7 +1,6 @@
-import { ExpenseTotal } from "./ExpenseTotal";
+// import { ExpenseTotal } from "./ExpenseTotal";
 import ExpenseForm from "./ExpenseForm";
 import { LatestExpenses } from "./LatestExpenses";
-import { SampleExpense } from "./SampleExpense";
 import React, { useEffect } from "react";
 import BarChart from "./BarChart"
 
@@ -15,8 +14,7 @@ const DashBoard = (props) => {
       <div style={{width: 700}}>
       {/* <BarChart user={user}/> */}
       </div>
-      <ExpenseTotal user={user}/>
-      <SampleExpense></SampleExpense>
+      {/* <ExpenseTotal user={user}/> */}
       <LatestExpenses user={user} expense={expense} triggerReload={triggerReload} setTriggerReload={setTriggerReload}></LatestExpenses>
     </>
   );
