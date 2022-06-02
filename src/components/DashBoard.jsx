@@ -2,20 +2,42 @@
 import ExpenseForm from "./ExpenseForm";
 import { LatestExpenses } from "./LatestExpenses";
 import React, { useEffect } from "react";
-import BarChart from "./BarChart"
+import { Grid } from "@mui/material/";
+import BarChart from "./BarChart";
 
 const DashBoard = (props) => {
-
-  const {user, expense, triggerReload, setTriggerReload} =props;
+  const { user, expense, triggerReload, setTriggerReload } = props;
   return (
     <>
-      <ExpenseForm user={user} triggerReload={triggerReload} setTriggerReload={setTriggerReload}/>
-      <h1>Expense Breakdown</h1>
-      <div style={{width: 700}}>
-      {/* <BarChart user={user}/> */}
-      </div>
-      {/* <ExpenseTotal user={user}/> */}
-      <LatestExpenses user={user} expense={expense} triggerReload={triggerReload} setTriggerReload={setTriggerReload}></LatestExpenses>
+      <Grid
+        container={true}
+        sx={{ display: "flex",justifyContent: "center", alignItems:"center",backgroundColor: "#162B1E", height: '100vh'  }}
+      >
+        <Grid
+          item={true}
+          sx={{ alignItems: "center", backgroundColor: "#162B1E", width: "80%" }}
+          xs={4} md={8}
+        >
+          <Grid item={true} sx={{ alignItems: "center" }}>
+            <ExpenseForm
+              user={user}
+              triggerReload={triggerReload}
+              setTriggerReload={setTriggerReload}
+            />
+          </Grid>
+          <Grid
+            item={true}
+            sx={{ alignItems: "center", backgroundColor: "yellow" }}
+          >
+            <LatestExpenses
+              user={user}
+              expense={expense}
+              triggerReload={triggerReload}
+              setTriggerReload={setTriggerReload}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
     </>
   );
 };

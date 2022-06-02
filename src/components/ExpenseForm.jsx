@@ -10,12 +10,12 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Button } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import axios from "axios";
-import "../pages/Home.css"
+import "../pages/Home.css";
 
 const currencies = [
   {
@@ -93,10 +93,9 @@ export default function ExpenseForm(props) {
   const [date, setDate] = React.useState();
   // const [user, setUser]= React.useState({user})
 
-
   const { user, triggerReload, setTriggerReload } = props;
 
-// console.log("these are the items carried over from login:",props);
+  // console.log("these are the items carried over from login:",props);
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -129,19 +128,19 @@ export default function ExpenseForm(props) {
     paymentMethod: payment,
     date: date,
     comment: note,
-    username: user._id // RO Comment: update with same value of username that was passed in from login/register state from props
+    username: user._id, // RO Comment: update with same value of username that was passed in from login/register state from props
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setCategory('');
-    setAmount('');
-    setPayment('');
-    setNote('');
-    setCurrency('');
+    setCategory("");
+    setAmount("");
+    setPayment("");
+    setNote("");
+    setCurrency("");
     setDate(null);
     setTriggerReload(true);
-    
+
     axios({
       url: "http://localhost:8080/expense/addExpense", //taken from server.js line 33
       method: "POST",
@@ -153,11 +152,7 @@ export default function ExpenseForm(props) {
       .catch(() => {
         console.log("ERROR; Data has NOT been sent to the server!");
       });
-    
   };
-
-
-  
 
   // console.log("this is the expense form payload:", payload);
 
@@ -167,39 +162,73 @@ export default function ExpenseForm(props) {
         <Box
           // component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { mx: "auto", width: "25ch" },
           }}
           noValidate
           autoComplete="off"
         >
-               <Typography variant="h6" gutterBottom>
-            {user.username}'s Expenses:
+          <Typography variant="h6" gutterBottom
+           sx={{color:"#FBCD8A"}}
+          >
+             {user.username}'s Profile
           </Typography>
-          <Typography variant="h6" gutterBottom>
-            Enter Expense Item
+          <Typography
+            variant="h5"
+            sx={{ display: "flex",justifyContent: "center", alignItems:"center", fontFamily:" Libre Bodoni",color:"#FBCD8A", mb: 6 }}
+            gutterBottom
+          >
+            Enter An Expense Item:
           </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={8} md={6}>
-              <InputLabel htmlFor="outlined-adornment-amount">
-                Amount
-              </InputLabel>
-              <OutlinedInput
+          {/* <Grid container spacing={2}  sx={{display: "grid", placeItems:"center"}}> */}
+
+          <Grid
+            container
+            spacing={3}
+       
+            sx={{
+              display: "flex",justifyContent: "center", alignItems:"center",
+              gap: 1,
+              gridTemplateColumns: "repeat(2, 1fr)",
+              
+            }}
+         
+          >
+            <Grid item 
+            // xs={8} md={6}
+            
+            // xs={4} md={8}
+            >
+              <InputLabel htmlFor="outlined-adornment-amount"></InputLabel>
+              <TextField
+              required
                 id="outlined-adornment-amount"
                 value={amount}
                 onChange={AmtUpdate}
-                startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
+               
+                // startAdornment={
+                //   <InputAdornment position="start">$</InputAdornment>
+                // }
+               
+                InputLabelProps={{style : {color : 'black'} }}
+                variant="standard"
                 label="Amount"
+                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item 
+            // xs={12} md={6}
+            // xs={4} md={8}
+            >
               <TextField
+              required
                 id="outlined-select-category"
                 select
                 label="Expense Category"
                 value={category}
                 onChange={CatUpdate}
+                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
+                InputLabelProps={{style : {color : 'black',} }}
+                variant="standard"
                 // helperText="Expense Category"
               >
                 {categories.map((option) => (
@@ -209,13 +238,20 @@ export default function ExpenseForm(props) {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item 
+            // xs={12} md={6}
+            // xs={4} md={8}
+            >
               <TextField
+              required
                 id="outlined-select-currency"
                 select
                 label="Currency"
                 value={currency}
                 onChange={handleChange}
+                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
+                InputLabelProps={{style : {color : 'black',} }}
+                variant="standard"
               >
                 {currencies.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -224,13 +260,20 @@ export default function ExpenseForm(props) {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item 
+            // xs={12} md={6}
+            // xs={4} md={8}
+            >
               <TextField
+              required
                 id="outlined-select-currency"
                 select
                 label="Payment Method"
                 value={payment}
                 onChange={paymentUpdate}
+                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
+                InputLabelProps={{style : {color : 'black',} }}
+                variant="standard"
               >
                 {payments.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -239,34 +282,80 @@ export default function ExpenseForm(props) {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item 
+         
+            // xs={12} md={6}
+            
+            // xs={4} md={8}
+            >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   label="Date"
                   value={date}
-              
+                  variant="standard"
+                  InputLabelProps={{style : {color : 'black',} }}
                   onChange={(updatedDate) => {
                     dateUpdate(updatedDate);
                   }}
-                  renderInput={(params) => <TextField {...params} />}
+                  renderInput={(params) => <TextField required {...params}       sx={{backgroundColor:"#FBCD8A", color:"black", borderRadius:"3px"}} />}
                 />
               </LocalizationProvider>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            <Grid item 
+            // xs={12} md={6}
+            // xs={4} md={8}
+            >
               <TextField
+              
                 id="outlined-basic"
                 // label="Outlined"
-                variant="outlined"
+         
                 value={note}
                 onChange={noteUpdate}
+                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
                 label="Notes"
+                InputLabelProps={{style : {color : 'black',} }}
+                variant="standard"
               />
             </Grid>
-            <Grid item xs={12} md={6}>
-                <button className="submitButton" variant="contained">Submit</button>
+            <br />
+         
+            <Grid container 
+            sx={{justifyContent:"center", pt:2}}>
+            <Grid item 
+            // xs={12} md={6}
+            // xs={4} md={8}
+            >
+              <div>
+              {/* <button className="submitButton" variant="contained">
+                Submit
+              </button> */}
+                  <Button
+               style={{
+                maxWidth: "200px",
+                maxHeight: "50px",
+                minWidth: "50px",
+                minHeight: "30px",
+                fontSize: "17px",
+                backgroundColor: '#FBCD8A  ',
+                color:"#162B1E", 
+              }}
+              sx={{mb: 6, pl:3, pr:3}}
+                className="submitButton"
+                type="submit"
+                fullWidth
+                variant="contained"
+                size="medium"
+              >
+                Submit
+              </Button>
+
+              </div>
+              </Grid>
             </Grid>
           </Grid>
+          {/* </Grid> */}
         </Box>
       </form>
     </React.Fragment>

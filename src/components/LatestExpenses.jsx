@@ -14,6 +14,7 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
+
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { SeverityPill } from "./SeverityPill";
@@ -61,13 +62,26 @@ async function deleteHandler(id) {
     
   return (
     <>
-    <Grid>
-      {sumTotal}
+    <Grid container
+      sx={{ display: "flex",justifyContent: "center", alignItems:"center",backgroundColor: "#FBCD8A", height: "800", width: "800"  }}
+    >
+     
+    <Grid item>
+    <h1>Expense Breakdown</h1>
+      <p>
+     You have spent ${sumTotal} so far
+     </p>
     </Grid>
+
     <Card >
-      <CardHeader title="Recent Expenses" />
+    <Grid item
+     sx={{backgroundColor: "#FBCD8A",  }}
+    >
+      <CardHeader title="Recent Expenses" 
+        // sx={{display: 'flex',flexWrap:"wrap",}}
+      />
       <PerfectScrollbar>
-        <Box sx={{ minWidth: 800 }}>
+        {/* <Box sx={{ minWidth: "auto" }}> */}
           <Table>
             <TableHead>
               <TableRow>
@@ -99,6 +113,10 @@ async function deleteHandler(id) {
                 <TableCell>
                   Comment
                 </TableCell>
+                <TableCell>
+                 Delete
+                
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -124,14 +142,28 @@ async function deleteHandler(id) {
                   { expense.comment}
                   </TableCell>
                   <TableCell>
-                    <button type='submit' onClick={() => deleteHandler(expense._id)}>Delete</button>
+
+              
+                    <Button
+                    className="deleteButton"
+                        style={{
+                          maxWidth: "200px",
+                          maxHeight: "50px",
+                          minWidth: "50px",
+                          minHeight: "30px",
+                          fontSize: "14px",
+                        
+                        }}
+                        sx={{m: 6, pl:3, pr:3}}
+
+                         type='submit' onClick={() => deleteHandler(expense._id)}>Delete</Button>
                     {/* <p>{expense._id}</p> */}
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-        </Box>
+        {/* </Box> */}
       </PerfectScrollbar>
       <Box
         sx={{
@@ -149,7 +181,10 @@ async function deleteHandler(id) {
           View all
         </Button> */}
       </Box>
+      </Grid>
     </Card>
+  
+    </Grid>
     </>
   );
 }
