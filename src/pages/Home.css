@@ -50,6 +50,11 @@ h2{
     text-align: center;
     color: #FFBD15
 }
+ h1, p {
+    font-family: 'Libre Bodoni', serif;
+    color: #162B1E;
+    text-align: center;
+ }
 
 .main-button:hover{
     color:#FBCD8A;
@@ -70,30 +75,9 @@ a {
     color:#FBCD8A !important;
 }
 
-
-
-/* .link-style{
-    color: white;
-    font-family: 'Archivo', sans-serif;
-    text-decoration:none;
-
-}
-
-
 .link-style:hover{
-    color: black;
-   
-
-} */
-
-
-/* .submitButton {
-    background-color: #162B1E !important; 
-    color:#FFBD15 !important;
-    font-family: 'Libre Bodoni', serif !important;
-    text-transform: capitalize !important;
-
-} */
+    color:  #162B1E 
+} 
 
 .submitButton {
     background-color: #FBCD8A !important;
@@ -117,3 +101,8 @@ a {
     color: #162B1E !important; 
     background-color:#FBCD8A !important;
 }
+
+.formTypo {
+    font-family: "Libre Bodoni";
+}
+

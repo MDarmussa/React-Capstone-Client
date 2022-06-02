@@ -154,13 +154,10 @@ export default function ExpenseForm(props) {
       });
   };
 
-  // console.log("this is the expense form payload:", payload);
-
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit}>
+      <form  onSubmit={handleSubmit}>
         <Box
-          // component="form"
           sx={{
             "& .MuiTextField-root": { mx: "auto", width: "25ch" },
           }}
@@ -170,66 +167,50 @@ export default function ExpenseForm(props) {
           <Typography variant="h6" gutterBottom
            sx={{color:"#FBCD8A"}}
           >
-             {user.username}'s Profile
           </Typography>
           <Typography
             variant="h5"
             sx={{ display: "flex",justifyContent: "center", alignItems:"center", fontFamily:" Libre Bodoni",color:"#FBCD8A", mb: 6 }}
             gutterBottom
           >
-            Enter An Expense Item:
+            Enter An Expense Item
           </Typography>
-          {/* <Grid container spacing={2}  sx={{display: "grid", placeItems:"center"}}> */}
-
           <Grid
             container
             spacing={3}
-       
             sx={{
               display: "flex",justifyContent: "center", alignItems:"center",
               gap: 1,
               gridTemplateColumns: "repeat(2, 1fr)",
-              
             }}
-         
           >
             <Grid item 
-            // xs={8} md={6}
-            
-            // xs={4} md={8}
             >
-              <InputLabel htmlFor="outlined-adornment-amount"></InputLabel>
+              <InputLabel  htmlFor="outlined-adornment-amount"></InputLabel>
               <TextField
-              required
+              sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
+                required 
                 id="outlined-adornment-amount"
                 value={amount}
                 onChange={AmtUpdate}
-               
-                // startAdornment={
-                //   <InputAdornment position="start">$</InputAdornment>
-                // }
-               
-                InputLabelProps={{style : {color : 'black'} }}
-                variant="standard"
                 label="Amount"
-                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
+                InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
+                variant="standard"
+               
               />
             </Grid>
             <Grid item 
-            // xs={12} md={6}
-            // xs={4} md={8}
             >
               <TextField
+              sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
               required
                 id="outlined-select-category"
-                select
-                label="Expense Category"
+                select label="Expense Category"
                 value={category}
                 onChange={CatUpdate}
-                sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
-                InputLabelProps={{style : {color : 'black',} }}
+                
+                InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
                 variant="standard"
-                // helperText="Expense Category"
               >
                 {categories.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -239,8 +220,6 @@ export default function ExpenseForm(props) {
               </TextField>
             </Grid>
             <Grid item 
-            // xs={12} md={6}
-            // xs={4} md={8}
             >
               <TextField
               required
@@ -250,7 +229,7 @@ export default function ExpenseForm(props) {
                 value={currency}
                 onChange={handleChange}
                 sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
-                InputLabelProps={{style : {color : 'black',} }}
+                InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
                 variant="standard"
               >
                 {currencies.map((option) => (
@@ -261,8 +240,6 @@ export default function ExpenseForm(props) {
               </TextField>
             </Grid>
             <Grid item 
-            // xs={12} md={6}
-            // xs={4} md={8}
             >
               <TextField
               required
@@ -272,7 +249,7 @@ export default function ExpenseForm(props) {
                 value={payment}
                 onChange={paymentUpdate}
                 sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
-                InputLabelProps={{style : {color : 'black',} }}
+                InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
                 variant="standard"
               >
                 {payments.map((option) => (
@@ -283,39 +260,33 @@ export default function ExpenseForm(props) {
               </TextField>
             </Grid>
             <Grid item 
-         
-            // xs={12} md={6}
-            
-            // xs={4} md={8}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                   label="Date"
                   value={date}
                   variant="standard"
-                  InputLabelProps={{style : {color : 'black',} }}
+                  InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
                   onChange={(updatedDate) => {
                     dateUpdate(updatedDate);
                   }}
-                  renderInput={(params) => <TextField required {...params}       sx={{backgroundColor:"#FBCD8A", color:"black", borderRadius:"3px"}} />}
+                  renderInput={(params) => <TextField 
+                  required {...params}       
+                  sx={{backgroundColor:"#FBCD8A", color : '#162B1E', borderRadius:"3px"}} />}
+                  
                 />
               </LocalizationProvider>
             </Grid>
 
             <Grid item 
-            // xs={12} md={6}
-            // xs={4} md={8}
             >
               <TextField
-              
                 id="outlined-basic"
-                // label="Outlined"
-         
                 value={note}
                 onChange={noteUpdate}
                 sx={{backgroundColor:"#FBCD8A", borderRadius:"3px"}}
                 label="Notes"
-                InputLabelProps={{style : {color : 'black',} }}
+                InputLabelProps={{style : {color : '#162B1E', fontFamily:" Libre Bodoni", paddingLeft: "8px" }}}
                 variant="standard"
               />
             </Grid>
