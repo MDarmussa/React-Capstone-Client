@@ -70,10 +70,6 @@ a {
     color:#FBCD8A !important;
 }
 
-.submitButton {
-    background-color: #162B1E !important; 
-    color:#FBCD8A !important;
-}
 
 
 /* .link-style{
@@ -91,3 +87,33 @@ a {
 } */
 
 
+/* .submitButton {
+    background-color: #162B1E !important; 
+    color:#FFBD15 !important;
+    font-family: 'Libre Bodoni', serif !important;
+    text-transform: capitalize !important;
+
+} */
+
+.submitButton {
+    background-color: #FBCD8A !important;
+    color: #162B1E !important; 
+    font-family: 'Libre Bodoni', serif !important;
+    text-transform: capitalize !important;
+}
+.submitButton:hover {
+    background-color: #162B1E !important; 
+    color:#FBCD8A !important;
+}
+
+.deleteButton {
+    background-color: #162B1E !important; 
+    color:#FBCD8A !important;
+    font-family: 'Libre Bodoni', serif !important;
+    text-transform: capitalize !important;
+}
+
+.deleteButton:hover {
+    color: #162B1E !important; 
+    background-color:#FBCD8A !important;
+}
