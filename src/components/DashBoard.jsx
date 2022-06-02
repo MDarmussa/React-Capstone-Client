@@ -11,7 +11,7 @@ const DashBoard = (props) => {
     <>
       <Grid
         container={true}
-        sx={{ display: "flex",justifyContent: "center", alignItems:"center",backgroundColor: "#162B1E", height: '100vh'  }}
+        sx={{ display: "flex",justifyContent: "center", alignItems:"center", backgroundColor: "#162B1E", height: '100%'  }}
       >
         <Grid
           item={true}
