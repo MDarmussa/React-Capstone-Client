@@ -142,7 +142,7 @@ export default function ExpenseForm(props) {
     setTriggerReload(true);
 
     axios({
-      url: "${process.env.REACT_APP_SERVER_URL}/expense/addExpense", //taken from server.js line 33
+      url: `${process.env.REACT_APP_SERVER_URL}/expense/addExpense`, //taken from server.js line 33
       method: "POST",
       data: payload,
     })
