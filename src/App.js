@@ -3,7 +3,7 @@ import DashBoard from "./components/DashBoard";
 import { Fragment } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import React, { useEffect } from "react";
+import React from "react";
 import Nav from "./components/NavMain";
 import NavDash from "./components/NavDash"
 import localData from "./localData";
