@@ -39,7 +39,7 @@ export default function SignUp() {
     event.preventDefault();
     setFormInfo({ username: "", email: "", password: "" });
     axios({
-      url: 'http://localhost:8080/user/register', //taken from server.js line 33
+      url: `${process.env.REACT_APP_SERVER_URL}/user/register`, //taken from server.js line 33
       method: 'POST',
       data: payload
      })

@@ -27,7 +27,7 @@ export const LatestExpenses = (props) => {
 
   useEffect(() => {
     const getExpenses = axios({
-      url: `http://localhost:8080/expense/userExpenses/${user._id}`, //taken from server.js line 33
+      url: `${process.env.REACT_APP_SERVER_URL}/expense/userExpenses/${user._id}`, //taken from server.js line 33
       method: "GET",
     })
       .then((response) => {
@@ -43,7 +43,7 @@ export const LatestExpenses = (props) => {
     console.log(id);
     const deleter = await axios({
       method: "delete",
-      url: `http://localhost:8080/expense/deleteExpense/${id}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/expense/deleteExpense/${id}`,
     });
     console.log(deleter);
     setTriggerReload(true);

@@ -45,7 +45,7 @@ export default function Login(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-      const response = await axios.post("http://localhost:8080/user/login/", payload)
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/user/login/`, payload)
       // console.log(response)
         if (response.data.msg) {
           setsigninError(response.data.msg);
