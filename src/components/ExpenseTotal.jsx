@@ -47,7 +47,7 @@ export const ExpenseTotal = (props) => {
 
   useEffect(() => {
     const getExpenses = axios({
-      url: `http://localhost:8080/expense/userExpenses/${user._id}`, //taken from server.js line 33
+      url: `${process.env.REACT_APP_SERVER_URL}/expense/userExpenses/${user._id}`, //taken from server.js line 33
       method: "GET",
       // data: payload
     })

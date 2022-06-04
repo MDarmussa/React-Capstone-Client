@@ -9,7 +9,7 @@ import axios from 'axios'
 export default function NavDash() {
   const handleChange = () => {
     axios({  
-      url: 'http://localhost:8080/user/logout/', 
+      url: `${process.env.REACT_APP_SERVER_URL}/user/logout/`, 
       method: 'GET'
         })
         .then( (response)=>{
@@ -17,7 +17,7 @@ export default function NavDash() {
           window.sessionStorage.setItem('isLoggedIn', false)
           window.sessionStorage.setItem('user', '')
           // we navigate to the login page on Logout
-          window.location.href = 'http://localhost:3000/logIn/' 
+          window.location.href = '/logIn/' 
           console.log('Data has been sent to the server! Im A LOGOUT ')
         })
         .catch(()=>{
